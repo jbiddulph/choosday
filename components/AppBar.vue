@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div class="logo">
-        <NuxtLink to="/" class="btn">Code with John</NuxtLink>
+        <NuxtLink to="/">Choosday</NuxtLink>
       </div>
       <div>
         <NuxtLink to="/about" class="btn">About</NuxtLink>
@@ -18,7 +18,7 @@ export default {};
 
 <style lang="scss" scoped>
   nav {
-    @apply flex justify-between items-center py-2 px-10 w-full bg-white shadow-lg;
+    @apply flex justify-between items-center py-2 px-10 w-full bg-white shadow-md;
     .logo {
       @apply p-4 font-bold;
     }
