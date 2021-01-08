@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="card">
       <div class="title">
-        <span class="text-emerald-800">NUXT</span>JS &amp; TailWindCSS v2.0
+        <span class="text-emerald-800">CHOOSDAY</span>.com &amp; la la la
       </div>
     </div>
   </div>
