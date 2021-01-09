@@ -4,16 +4,28 @@
       <div class="logo">
         <NuxtLink to="/">Choosday</NuxtLink>
       </div>
-      <div>
+      <div v-if="$auth.loggedIn">
+        {{ $auth.user.email }}
         <NuxtLink to="/about" class="btn">About</NuxtLink>
-        <NuxtLink to="/login" class="btn">Login</NuxtLink>
+        <NuxtLink to="logout" class="btn">Logout</NuxtLink>
+      </div>
+      <div v-else>
+        <!-- {{ currentUser.name }} -->
+        <NuxtLink to="/about" class="btn">About</NuxtLink>
+        <NuxtLink to="login" class="btn">Login</NuxtLink>
+        <NuxtLink to="register" class="btn">Register</NuxtLink>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState(['currentUser'])
+  }
+};
 </script>
 
 <style lang="scss" scoped>
