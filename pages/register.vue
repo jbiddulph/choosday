@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h1>Login</h1>
-    <UserAuthForm buttonText="Login" :submitForm="loginUser" />
+    <h1>Register</h1>
+    <UserAuthForm buttonText="Register" :submitForm="registerUser" hasName="true" />
   </div>
 </template>
 
@@ -12,19 +12,8 @@ export default {
     UserAuthForm
   },
   methods: {
-    // async loginUser(userInfo) {
-    //   try {
-    //     let response = await this.$auth.loginWith('local', { data: userInfo })
-    //     console.log(response)
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-    loginUser(userInfo) {
-      this.$auth.loginWith('local', {
-        data: userInfo
-      })
-      alert('here we ar e')
+    registerUser(resgistrationinfo) {
+      alert('here we are', resgistrationinfo)
     }
   }
 }

@@ -3,13 +3,26 @@
     <div class="card">
       <div class="title">
         <span class="text-emerald-800">CHOOSDAY</span>.com &amp; la la la
+        <!-- <div v-for="user in users" :key="user.id">
+          {{user.name}}
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+export default {
+  // computed: {
+  //   ...mapState(['users'])
+  // },
+  // mounted() {
+  //   if (!this.$store.state.user.users.length) {
+  //     this.$store.dispatch('loadAll')
+  //   }
+  // }
+}
 </script>
 
 <style lang="scss" scoped>
