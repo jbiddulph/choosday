@@ -4,10 +4,11 @@
       <div class="logo">
         <NuxtLink to="/">Choosday</NuxtLink>
       </div>
-      <div v-if="$auth.loggedIn">
-        {{ $auth.user.email }}
-        <NuxtLink to="/about" class="btn">About</NuxtLink>
-        <NuxtLink to="logout" class="btn">Logout</NuxtLink>
+      
+      <div v-if="this.$auth.loggedIn">
+        {{ $auth.user.name }}
+        <NuxtLink to="/admin" class="btn">Admin</NuxtLink>
+        <div @click="$auth.logout()" class="btn">Logout</div>
       </div>
       <div v-else>
         <!-- {{ currentUser.name }} -->

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Register</h1>
-    <UserAuthForm buttonText="Register" :submitForm="registerUser" hasName="true" />
+    <UserAuthForm buttonText="Register" :submitForm="registerUser" hasName="true" isRegister="true" />
   </div>
 </template>
 
@@ -12,8 +12,17 @@ export default {
     UserAuthForm
   },
   methods: {
-    registerUser(resgistrationinfo) {
-      alert('here we are', resgistrationinfo)
+    async registerUser(registrationinfo) {
+      try {
+        await this.$axios.post('http://choosapi.test/api/auth/register', registrationinfo)
+        this.$auth.login({
+          data: registrationinfo
+        })
+        this.$store.dispatch('snackbar/setSnackbar', {text: `Thanks for signing in, ${registrationinfo.name}`})
+        this.$router.push('/')
+      } catch {
+        this.$store.dispatch('snackbar/setSnackbar', {color: 'red', text: 'There was an issue signing in.  Please try again.'})
+      } 
     }
   }
 }

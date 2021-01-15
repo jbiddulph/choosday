@@ -3,23 +3,28 @@
     <v-form v-model="valid">
         <v-text-field type="text" 
             :rules="[required('name')]"
-            name="name" 
             placeholder="JBlogs"
-            v-model="loginInfo.name"
+            v-model="userInfo.name"
             v-if="hasName" />
         <v-text-field type="email" 
-            name="email" 
             placeholder="timothy@timothy.com"
             :rules="[required('email'), emailFormat()]"
-            v-model="loginInfo.email" />
+            v-model="userInfo.email" />
         <v-text-field :type="showPassword ? 'text' : 'password'" 
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
             counter="true"
             :rules="[required('password'), minLength('password', 6)]"
             placeholder="1234567"
-            name="password"
-            v-model="loginInfo.password" />
+            v-model="userInfo.password" />
+        <v-text-field :type="showPassword ? 'text' : 'password'"
+            v-if="isRegister"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="showPassword = !showPassword"
+            counter="true"
+            :rules="[required('password'), minLength('password', 6)]"
+            placeholder="1234567"
+            v-model="userInfo.password_confirmation" />
         <v-btn @click="submitForm(userInfo)" :disabled="!valid">
             {{buttonText}}
         </v-btn>
@@ -34,14 +39,16 @@ export default {
         return {
             valid: false,
             showPassword: false,
-            loginInfo: {
-                email: '',
-                password: ''
+            userInfo: {
+                name: 'johnmb',
+                email: 'john.biddulph@email.com',
+                password: 'Scaramanga7935!',
+                password_confirmation: 'Scaramanga7935!'
             },
             ...validations
         }
     },
-    props: ['submitForm', 'buttonText', 'hasName'],
+    props: ['submitForm', 'buttonText', 'hasName', 'isRegister'],
     methods: {
         loginUser() {
             this.$store.dispatch('loginUser', this.loginInfo)

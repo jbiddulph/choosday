@@ -8,23 +8,21 @@
 <script>
 import UserAuthForm from '@/components/UserAuthForm'
 export default {
+  auth: false,
   components: {
     UserAuthForm
   },
   methods: {
-    // async loginUser(userInfo) {
-    //   try {
-    //     let response = await this.$auth.loginWith('local', { data: userInfo })
-    //     console.log(response)
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-    loginUser(userInfo) {
-      this.$auth.loginWith('local', {
-        data: userInfo
-      })
-      alert('here we ar e')
+    async loginUser(loginInfo){
+      try {
+        await this.$auth.login({
+          data: loginInfo
+        })
+        this.$store.dispatch('snackbar/setSnackbar', {text: `Thanks for signing in, ${this.$auth.user.name}`})
+        this.$router.push('/')
+      } catch {
+        this.$store.dispatch('snackbar/setSnackbar', {color: 'red', text: 'There was an issue signing in.  Please try again.'})
+      }
     }
   }
 }
