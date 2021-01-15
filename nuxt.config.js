@@ -27,14 +27,42 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
+    '@nuxtjs/vuetify',
     '@nuxtjs/tailwindcss',
   ],
-
+  ssr: true,
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
-
+  axios: {
+    baseURL: 'http://choosapi.test/api'
+    // baseURL: 'http://movemeapi.test/api'
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-  }
+    vendor: ['axios', 'vuetify']
+  },
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: false, // here should be `false`, as you defined in user endpoint `propertyName`
+          autoFetch: true
+        },
+        // `propertyName` in endpoint was depreacted
+        endpoints: {
+          login: { url: 'auth/login', method: 'post' },
+          logout: { url: 'auth/logout', method: 'post' },
+          user: { url: 'auth/profile', method: 'get' },
+        }
+      }
+    }
+  },
 }
