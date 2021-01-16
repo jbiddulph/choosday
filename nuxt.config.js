@@ -37,8 +37,8 @@ export default {
     '@nuxtjs/auth-next'
   ],
   axios: {
-    baseURL: 'http://choosapi.test/api'
-    // baseURL: 'http://movemeapi.test/api'
+    baseURL: 'https://www.stayinghome.uk/public/api'
+    // baseURL: 'http://choosapi.test/api'
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
