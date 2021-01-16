@@ -40,10 +40,10 @@ export default {
             valid: false,
             showPassword: false,
             userInfo: {
-                name: 'johnmb',
-                email: 'john.biddulph@email.com',
-                password: 'Scaramanga7935!',
-                password_confirmation: 'Scaramanga7935!'
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: ''
             },
             ...validations
         }
