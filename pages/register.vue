@@ -14,7 +14,7 @@ export default {
   methods: {
     async registerUser(registrationinfo) {
       try {
-        await this.$axios.post('https://www.stayinghome.uk/be/api/auth/register', registrationinfo)
+        await this.$axios.post('http://choosapi.test/be/api/auth/register', registrationinfo)
         this.$auth.login({
           data: registrationinfo
         })
