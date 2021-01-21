@@ -7,7 +7,10 @@
 
 <script>
 import UserAuthForm from '@/components/UserAuthForm'
+const Cookie = process.client ? require('js-cookie') : undefined
+
 export default {
+  middleware: 'notAuthenticated',
   auth: false,
   components: {
     UserAuthForm
@@ -19,7 +22,15 @@ export default {
           data: loginInfo
         })
         this.$store.dispatch('snackbar/setSnackbar', {text: `Thanks for signing in, ${this.$auth.user.name}`})
+        setTimeout(() => {
+        // we simulate the async request with timeout.
+        const auth = {
+          accessToken: localStorage.getItem('auth._token.local')
+        }
+        this.$store.commit('setAuth', auth) // mutating to store for client rendering
+        Cookie.set('auth', auth) // saving token in cookie for server rendering
         this.$router.push('/')
+      }, 1000)
       } catch {
         this.$store.dispatch('snackbar/setSnackbar', {color: 'red', text: 'There was an issue signing in.  Please try again.'})
       }

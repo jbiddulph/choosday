@@ -7,8 +7,9 @@
       
       <div v-if="this.$auth.loggedIn">
         {{ $auth.user.name }}
+        <NuxtLink to="/todos" class="btn">Todos</NuxtLink>
         <NuxtLink to="/admin" class="btn">Admin</NuxtLink>
-        <div @click="$auth.logout()" class="btn">Logout</div>
+        <div @click="logout" class="btn">Logout</div>
       </div>
       <div v-else>
         <!-- {{ currentUser.name }} -->
@@ -22,9 +23,19 @@
 
 <script>
 import { mapState } from 'vuex'
+const Cookie = process.client ? require('js-cookie') : undefined
+
 export default {
   computed: {
     ...mapState(['currentUser'])
+  },
+  methods: {
+    logout() {
+      // Code will also be required to invalidate the JWT Cookie on external API
+      Cookie.remove('auth')
+      this.$store.commit('setAuth', null)
+      redirect('/login')
+    }
   }
 };
 </script>
